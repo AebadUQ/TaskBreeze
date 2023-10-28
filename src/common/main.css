@@ -1,0 +1,199 @@
+/* Layout Css */
+.layout {
+    background-color: #e6f4f1;
+}
+
+/* Header Component css */
+.ant-layout-header {
+    background-color: white;
+}
+
+.headerTag {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    border-radius: 27px;
+    transition: all 0.2s ease-in-out;
+    background-color: #e2e5e8;
+    margin-inline: 10px;
+}
+
+.headerTag:hover {
+    background-color: #091f3c !important;
+}
+
+.headerTag:hover .anticon {
+    color: white !important;
+}
+
+.ant-image {
+    cursor: pointer;
+}
+
+.headerAvatar {
+    background-color: #e4b21a;
+    vertical-align: middle;
+    color: #0a2342;
+    font-size: 12px;
+}
+
+.settingIcon {
+    font-size: 18px;
+    color: #0a2342;
+    transition: color 0.2s ease-in-out;
+}
+
+.ellipsisIcon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .ant-layout-header {
+        padding: 0px 10px;
+    }
+}
+
+/* Content css */
+.optionIcon {
+    color: #0a2342;
+    font-size: 22px;
+}
+
+.optionIcon:hover {
+    color: #2e9e8a;
+}
+
+.addTodoIcon {
+    font-size: 28px;
+    color: #0a2342;
+}
+
+.addTodoIcon:hover {
+    color: #2e9e8a;
+}
+
+.ant-input-search .ant-input-search:focus .ant-input-search:hover {
+    border-color: #2e9e8a !important;
+
+}
+
+.ant-input-search-button .anticon {
+    color: #0a2342;
+}
+
+.ant-btn:focus {
+    border-color: #2e9e8a !important;
+
+}
+
+.ant-input-search .ant-input:focus {
+    border-color: #2e9e8a !important;
+
+}
+
+.ant-input {
+    height: 40px;
+}
+
+.ant-select {
+    height: 40px !important;
+
+}
+
+.ant-input:active {
+    border-color: #2e9e8a !important;
+
+}
+
+.ant-input:focus {
+    border-color: #2e9e8a !important;
+
+}
+
+
+.ant-select-selector:active {
+    border: 0px !important;
+}
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+    background-color: #2e9e8a;
+    border: 0px !important;
+}
+
+.ant-radio-wrapper:hover {
+    border: 0px;
+}
+
+.ant-radio-wrapper .ant-radio-checked::after .ant-radio-wrapper:hover {
+    border: 0px;
+
+}
+
+.ant-radio-wrapper:hover .ant-radio-inner {
+    border: 0px !important;
+}
+
+.ant-select-focused.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    border-color: #2e9e8a !important;
+}
+
+.todoFormBtn {
+    background-color: #2e9e8a;
+    border: 0px;
+
+}
+
+.todoFormBtn:hover {
+    background-color: #0a2342 !important;
+    border: 0px;
+}
+
+
+/* Task Card css */
+.taskCard {
+    margin: 10px;
+    transition: transform 0.5s, box-shadow 0.5s;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.taskCard:hover {
+
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.taskStatusTitle {
+    color: #2e9e8a;
+
+}
+
+.taskStatus {
+    background-color: #e6f4f1;
+    border: 0px solid #2e9e8a !important;
+
+}
+
+.taskStatus:hover {
+    border: 0px solid #2e9e8a !important;
+}
+
+.taskAvatar {
+    background-color: #0a2342;
+
+}
+
+.ant-badge.ant-badge-status .ant-badge-status-dot {
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+}
+
+/* layout content box css */
+.contentStyle{
+    margin: 24px;
+    padding: 0px 38px;
+    border-radius: 8px;
+    min-height: 100vh;
+    height: 100%;
+}
