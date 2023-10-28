@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import { Layout } from "antd";
+import HeaderComponent from "./components/HeaderComponent";
+import ContentComponent from "./components/ContentComponent";
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div>Product Structuring..</div>
-  )
-}
+    <Layout className="layout">
+      <HeaderComponent />
+      <ContentComponent />
+    </Layout>
+  );
+};
 
-export default App
+export default App;
