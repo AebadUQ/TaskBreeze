@@ -5,18 +5,20 @@ export type  SocialMediaLink= {
   }
   
   export   type FieldType = {
+    id?:string,
     taskname?: string;
     description?: string;
     assignto?: string;
     status?: string;
-    priority?: number;
+    priority?: string;
   };
   export type Task ={
-    taskName: string;
+    id?:string,
+    taskname: string;
     description: string;
-    assignTo: string;
+    assignto: string;
     status: string;
-    priority: number;
+    priority: string;
   }
   
   export type TaskCardProps ={
@@ -26,5 +28,14 @@ export type  SocialMediaLink= {
     variant: "primary" | "secondary" | any;
     onClick?: () => void;
     icon?: React.ReactNode;
+    handleDeleteClick?:any
   }
+
   
+  export type  Todo= {
+    id: string;
+  }
+  export type  ToDoState ={
+    todoId: string;
+    todoList: Todo[]; 
+  }

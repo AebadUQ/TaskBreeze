@@ -1,13 +1,12 @@
 import React from "react";
 import { Layout } from "antd";
+import Home from "./page/Home";
 import HeaderComponent from "./components/HeaderComponent";
-import ContentComponent from "./components/ContentComponent";
-
 const App: React.FC = () => {
   return (
     <Layout className="layout">
       <HeaderComponent />
-      <ContentComponent />
+      <Home />
     </Layout>
   );
 };
