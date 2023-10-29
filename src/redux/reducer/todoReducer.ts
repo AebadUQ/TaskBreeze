@@ -1,8 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ToDoState, Todo } from "../../types";
+const LOCAL_STORAGE_KEY = "todoList"; 
+const loadTodoListFromLocalStorage = () => {
+  const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+  return storedData ? JSON.parse(storedData) : [];
+};
+const saveTodoListToLocalStorage = (todoList: any) => {
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList));
+};
 const initialState: ToDoState = {
   todoId: "",
-  todoList: [],
+  todoList: loadTodoListFromLocalStorage(),
 };
 export const toDoSlice = createSlice({
   name: "todo",
@@ -14,12 +22,14 @@ export const toDoSlice = createSlice({
         ...action.payload,
       };
       state.todoList.push(newTodo);
+      saveTodoListToLocalStorage(state.todoList);
     },
     deleteToDo: (state, action: PayloadAction<string>) => {
       const todoIdToDelete = action.payload;
       state.todoList = state.todoList.filter(
         (todo) => todo.id !== todoIdToDelete
       );
+      saveTodoListToLocalStorage(state.todoList);
     },
     editTodo: (state, action: PayloadAction<Partial<Todo>>) => {
       const { id, ...newTodoData } = action.payload;
@@ -27,6 +37,7 @@ export const toDoSlice = createSlice({
 
       if (todoToEdit) {
         Object.assign(todoToEdit, newTodoData);
+        saveTodoListToLocalStorage(state.todoList);
       }
     },
   },
