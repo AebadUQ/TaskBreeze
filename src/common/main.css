@@ -100,6 +100,10 @@
     height: 40px !important;
 
 }
+.ant-select-selector:hover {
+    border-color: #2e9e8a !important;
+
+}
 
 .ant-input:active {
     border-color: #2e9e8a !important;
@@ -107,6 +111,10 @@
 }
 
 .ant-input:focus {
+    border-color: #2e9e8a !important;
+
+}
+.ant-input:hover {
     border-color: #2e9e8a !important;
 
 }
@@ -124,7 +132,19 @@
 .ant-radio-wrapper:hover {
     border: 0px;
 }
+.ant-input-affix-wrapper:active{
+    border-color: #2e9e8a !important;
 
+}
+
+.ant-input-affix-wrapper{
+    border-color: #e2e5e8 !important;
+    box-shadow: none !important;
+}
+.ant-input-affix-wrapper:hover{
+    border-color: #2e9e8a !important;
+
+}
 .ant-radio-wrapper .ant-radio-checked::after .ant-radio-wrapper:hover {
     border: 0px;
 

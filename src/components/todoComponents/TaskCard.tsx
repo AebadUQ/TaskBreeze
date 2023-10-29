@@ -1,6 +1,6 @@
 import EditModal from "./EditModal";
 import React, { useState } from "react";
-import { theme } from "../../common/theme";
+import { colors } from "../../common/theme";
 import { TaskCardProps } from "../../types";
 import { useDispatch } from "react-redux";
 import { CustomAvatar } from "../ui-components";
@@ -33,10 +33,10 @@ const CustomTitle: React.FC<{
         <Badge
           color={
             priority === "High"
-              ? theme.high
+              ? colors.high
               : priority === "Medium"
-              ? theme.medium
-              : theme.low
+              ? colors.medium
+              : colors.low
           }
           size={"small"}
         />
