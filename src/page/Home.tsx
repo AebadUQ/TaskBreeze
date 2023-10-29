@@ -10,15 +10,18 @@ import {
   Space,
   Empty,
   theme,
+  Radio,
 } from "antd";
 import {
   CopyOutlined,
   FolderOpenOutlined,
   PlusCircleFilled,
   SearchOutlined,
+  FilterOutlined,
 } from "@ant-design/icons";
 import { colors } from "../common/theme";
 import { useSelector } from "react-redux";
+import { Task } from "../types";
 import TaskCard from "../components/todoComponents/TaskCard";
 import TaskModal from "../components/todoComponents/TaskModal";
 const { Title } = Typography;
@@ -32,15 +35,16 @@ const ContentComponent: React.FC<AppProps> = () => {
   } = theme.useToken();
   const alltask = useSelector((state: any) => state.todoReducer.todoList);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [show, setShow] = useState(false);
   const [row, setRow] = useState(alltask);
+  const [selectedValue, setSelectedValue] = useState("all");
   React.useEffect(() => {
     setRow(alltask);
   }, [alltask]);
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleSearch = (value: any) => {
+  const handleSearch = (value: string) => {
     const newString = value;
 
     if (newString !== "") {
@@ -69,7 +73,14 @@ const ContentComponent: React.FC<AppProps> = () => {
       setRow(alltask);
     }
   };
-
+  const handleRadioChange = (e:any) => {
+    setSelectedValue(e.target.value);
+    const filtered = alltask.filter((task:Task) => task.status === e.target.value);
+    setRow(filtered);
+    if (e.target.value === "all") {
+      setRow(alltask);
+    }
+  };
   return (
     <>
       <Content
@@ -80,7 +91,7 @@ const ContentComponent: React.FC<AppProps> = () => {
       >
         <Row>
           <Col span={24}>
-            <Title level={3}>Task List</Title>
+            <Title level={3}>Task List </Title>
             <Divider />
           </Col>
         </Row>
@@ -102,12 +113,20 @@ const ContentComponent: React.FC<AppProps> = () => {
           <Col xs={0} sm={12}>
             <Row justify={"end"}>
               <Space size={14}>
-                <Tooltip placement="topLeft" title={"Copy"}>
-                  <CopyOutlined className="optionIcon" />
+                <Tooltip placement="topLeft" title={"Filter"}>
+                  <FilterOutlined
+                    className="optionIcon"
+                    onClick={() => {
+                      
+                      setShow(!show)
+                      if(show===true){
+                        setRow(alltask)
+                        setSelectedValue("all")
+                      }
+                    }}
+                  />
                 </Tooltip>
-                <Tooltip placement="topLeft" title={"Local Storage"}>
-                  <FolderOpenOutlined className="optionIcon" />
-                </Tooltip>
+
                 <PlusCircleFilled className="addTodoIcon" onClick={showModal} />
               </Space>
             </Row>
@@ -130,11 +149,22 @@ const ContentComponent: React.FC<AppProps> = () => {
           </Col>
         </Row>
         <Divider />
+        {show ? (
+          <Row justify={"end"}>
+            <Radio.Group onChange={handleRadioChange} value={selectedValue}>
+              <Radio value="all">All</Radio>
+
+              <Radio value="To do">To do</Radio>
+              <Radio value="In progress">In progress</Radio>
+              <Radio value="Completed">Completed</Radio>
+            </Radio.Group>
+          </Row>
+        ) : null}
         <Row>
           <Col span={24}>
             <Row>
               {row && row.length > 0 ? (
-                row.map((task: any) => (
+                row.map((task: Task) => (
                   <Col
                     xs={24}
                     sm={12}

@@ -9,7 +9,7 @@ import {
   Select,
   Input,
 } from "antd";
-import { FieldType } from "../../types";
+import { FieldType ,Task} from "../../types";
 import { useDispatch } from "react-redux";
 import { addToDo } from "../../redux/reducer/todoReducer";
 const { Option } = Select;
@@ -30,7 +30,7 @@ const TaskModal: React.FC<{
     setIsModalOpen(false);
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: Task) => {
     dispatch(addToDo(values));
     form.resetFields();
     setIsModalOpen(false);

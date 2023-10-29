@@ -9,7 +9,7 @@ import {
   Select,
   Input,
 } from "antd";
-import { FieldType } from "../../types";
+import { FieldType,Task } from "../../types";
 import { useDispatch } from "react-redux";
 import { editTodo } from "../../redux/reducer/todoReducer";
 
@@ -19,7 +19,7 @@ const { Paragraph } = Typography;
 const EditModal: React.FC<{
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
-  task: any;
+  task: Task;
 }> = ({ isModalOpen, setIsModalOpen, task }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const EditModal: React.FC<{
     setIsModalOpen(false);
   };
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: Task) => {
     dispatch(editTodo({ id: task?.id, ...values }));
     form.resetFields();
     setIsModalOpen(false);

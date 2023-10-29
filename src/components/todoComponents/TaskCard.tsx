@@ -1,9 +1,9 @@
 import EditModal from "./EditModal";
 import React, { useState } from "react";
 import { colors } from "../../common/theme";
-import { TaskCardProps } from "../../types";
 import { useDispatch } from "react-redux";
 import { CustomAvatar } from "../ui-components";
+import { TaskCardProps,Task } from "../../types";
 import { deleteToDo } from "../../redux/reducer/todoReducer";
 import { DeleteOutlined, EditOutlined, CopyOutlined } from "@ant-design/icons";
 import {
@@ -21,7 +21,7 @@ import {
 const { Paragraph, Text } = Typography;
 
 const CustomTitle: React.FC<{
-  task: any;
+  task: Task;
   handleDeleteClick: any;
   handleEditClick: any;
   copyToClipboard: any;
