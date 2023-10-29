@@ -21,7 +21,7 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
   const avatarStyle: React.CSSProperties = {
     transition: "all 0.3s",
     color: colors.primary,
-    backgroundColor: variant === "primary" ? colors?.lightgreen : colors.lightGrey,
+    backgroundColor: variant === "primary" ? colors?.lightgreen : colors.lightgrey,
   };
 
   if (isHovered) {
@@ -37,6 +37,7 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
         style={avatarStyle}
         onClick={onClick}
       />
+      
     </div>
   );
 };

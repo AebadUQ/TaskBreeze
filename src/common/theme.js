@@ -5,8 +5,8 @@
     high:'red',
     medium:'#faa924',
     low:'#54c51d',
-    lightgreen:'#e2e5e8',
-    lightGrey:'#e2e5e8',
+    lightgreen:'#e6f4f1',
+    lightgrey:'#e2e5e8',
     white:'white'
     
 }
