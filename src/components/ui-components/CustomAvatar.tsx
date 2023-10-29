@@ -2,7 +2,7 @@ import { Avatar } from "antd";
 import React, { useState } from "react";
 import { CustomAvatarProps } from "../../types";
 import { UserOutlined } from "@ant-design/icons";
-import { theme } from '../../common/theme';
+import { colors } from '../../common/theme';
 const CustomAvatar: React.FC<CustomAvatarProps> = ({
   variant,
   onClick,
@@ -20,13 +20,13 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
 
   const avatarStyle: React.CSSProperties = {
     transition: "all 0.3s",
-    color: theme.primary,
-    backgroundColor: variant === "primary" ? theme?.lightgreen : theme.lightGrey,
+    color: colors.primary,
+    backgroundColor: variant === "primary" ? colors?.lightgreen : colors.lightGrey,
   };
 
   if (isHovered) {
-    avatarStyle.backgroundColor = variant === "primary" ? theme.primary : theme?.secondary;
-    avatarStyle.color = variant === "primary" ? theme?.white : theme?.white;
+    avatarStyle.backgroundColor = variant === "primary" ? colors.primary : colors?.secondary;
+    avatarStyle.color = variant === "primary" ? colors?.white : colors?.white;
   }
 
   return (

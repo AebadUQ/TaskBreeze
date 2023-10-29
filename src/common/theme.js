@@ -1,4 +1,4 @@
- export const theme={
+ export const colors={
     primary:'#0a2342',
     secondary:'#2e9e8a',
     ternary:'',

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Layout,
-  theme,
   Typography,
   Row,
   Col,
@@ -9,16 +8,19 @@ import {
   Tooltip,
   Input,
   Space,
+  Empty,
+  theme,
 } from "antd";
 import {
   CopyOutlined,
   FolderOpenOutlined,
   PlusCircleFilled,
+  SearchOutlined,
 } from "@ant-design/icons";
+import { colors } from "../common/theme";
 import { useSelector } from "react-redux";
 import TaskCard from "../components/todoComponents/TaskCard";
 import TaskModal from "../components/todoComponents/TaskModal";
-const { Search } = Input;
 const { Title } = Typography;
 const { Content } = Layout;
 
@@ -30,12 +32,42 @@ const ContentComponent: React.FC<AppProps> = () => {
   } = theme.useToken();
   const alltask = useSelector((state: any) => state.todoReducer.todoList);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [row, setRow] = useState(alltask);
   React.useEffect(() => {
     setRow(alltask);
   }, [alltask]);
   const showModal = () => {
     setIsModalOpen(true);
+  };
+  const handleSearch = (value: any) => {
+    const newString = value;
+
+    if (newString !== "") {
+      const newRows = alltask?.filter((row: any) => {
+        let matches = true;
+        const properties = ["taskname"];
+        let containsQuery = false;
+        properties.forEach((property) => {
+          if (
+            row[property]
+              .toString()
+              .toLowerCase()
+              .includes(newString?.toString().toLowerCase())
+          ) {
+            containsQuery = true;
+          }
+        });
+
+        if (!containsQuery) {
+          matches = false;
+        }
+        return matches;
+      });
+      setRow(newRows);
+    } else {
+      setRow(alltask);
+    }
   };
 
   return (
@@ -54,10 +86,17 @@ const ContentComponent: React.FC<AppProps> = () => {
         </Row>
         <Row>
           <Col span={12}>
-            <Search
-              placeholder="Search Task"
-              size="large"
-              style={{ width: 250 }}
+            <Input
+              placeholder="Search Tasks"
+              onChange={(e) => {
+                handleSearch(e.target.value);
+              }}
+              style={{ width: 270 }}
+              suffix={
+                <SearchOutlined
+                  style={{ color: colors?.secondary, fontSize: 18 }}
+                />
+              }
             />
           </Col>
           <Col xs={0} sm={12}>
@@ -94,19 +133,25 @@ const ContentComponent: React.FC<AppProps> = () => {
         <Row>
           <Col span={24}>
             <Row>
-              {row?.map((task: any) => (
-                <Col
-                  xs={24}
-                  sm={12}
-                  md={12}
-                  lg={8}
-                  xl={6}
-                  xxl={6}
-                  key={task.id}
-                >
-                  <TaskCard task={task} />
+              {row && row.length > 0 ? (
+                row.map((task: any) => (
+                  <Col
+                    xs={24}
+                    sm={12}
+                    md={12}
+                    lg={8}
+                    xl={6}
+                    xxl={6}
+                    key={task.id}
+                  >
+                    <TaskCard task={task} />
+                  </Col>
+                ))
+              ) : (
+                <Col span={24}>
+                  <Empty description="No tasks found" />
                 </Col>
-              ))}
+              )}
             </Row>
           </Col>
         </Row>
