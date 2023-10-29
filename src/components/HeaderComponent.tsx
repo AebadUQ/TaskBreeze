@@ -28,17 +28,17 @@ const HeaderComponent: React.FC = () => {
   const socialMediaLinks: SocialMediaLink[] = [
     {
       icon: <LinkedinFilled />,
-      url: "https://www.linkedin.com/in/your-linkedin-profile",
+      url: "https://www.linkedin.com/in/aebad-ul-quadir-2b7b74203/",
       variant: "primary",
     },
     {
       icon: <GithubFilled />,
-      url: "https://github.com/your-github-profile",
+      url: "https://github.com/AebadUQ",
       variant: "secondary",
     },
     {
       icon: <MailFilled />,
-      url: "mailto:your-email@example.com",
+      url: "mailto:aebadulquadir123@gmail.com",
       variant: "primary",
     },
   ];
