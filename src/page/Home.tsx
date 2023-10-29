@@ -167,7 +167,7 @@ const ContentComponent: React.FC<AppProps> = () => {
                 row.map((task: Task) => (
                   <Col
                     xs={24}
-                    sm={12}
+                    sm={24}
                     md={12}
                     lg={8}
                     xl={6}

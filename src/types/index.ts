@@ -33,7 +33,7 @@ export type  SocialMediaLink= {
 
   
   export type  Todo= {
-    id: string;
+    id: string | undefined;
   }
   export type  ToDoState ={
     todoId: string;

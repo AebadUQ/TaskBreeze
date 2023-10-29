@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { colors } from "../../common/theme";
 import { useDispatch } from "react-redux";
 import { CustomAvatar } from "../ui-components";
-import { TaskCardProps,Task } from "../../types";
+import { TaskCardProps, Task } from "../../types";
 import { deleteToDo } from "../../redux/reducer/todoReducer";
 import { DeleteOutlined, EditOutlined, CopyOutlined } from "@ant-design/icons";
 import {
@@ -16,66 +16,42 @@ import {
   Tooltip,
   Badge,
   Space,
+  Divider,
 } from "antd";
 
 const { Paragraph, Text } = Typography;
 
 const CustomTitle: React.FC<{
   task: Task;
-  handleDeleteClick: any;
-  handleEditClick: any;
-  copyToClipboard: any;
-}> = ({ task, handleDeleteClick, handleEditClick, copyToClipboard }) => (
-  <Row align={"middle"}>
-    <Col span={12}>
-      <Row align={"middle"} justify={"start"}>
-        <Badge
-          color={
-            task?.priority === "High"
-              ? colors.high
-              : task?.priority === "Medium"
-              ? colors.medium
-              : colors.low
-          }
-          size={"small"}
-        />
-        <Text>{task?.taskname}</Text>
-      </Row>
-    </Col>
-    <Col span={12}>
-      <Row justify={"end"}>
-        <Space size={10}>
-          <CustomAvatar
-            variant={"secondary"}
-            icon={<CopyOutlined />}
-            onClick={() => copyToClipboard(task)}
-          />
 
-          <CustomAvatar
-            variant={"primary"}
-            icon={<EditOutlined />}
-            onClick={() => handleEditClick(task?.id)}
-          />
-          <CustomAvatar
-            variant={"secondary"}
-            icon={<DeleteOutlined />}
-            onClick={() => handleDeleteClick(task?.id)}
-          />
-        </Space>
-      </Row>
-    </Col>
+  copyToClipboard: any;
+}> = ({ task, copyToClipboard }) => (
+  <Row align={"middle"} justify={"space-between"}>
+   
+
+    <Row justify={"end"}>
+      <Space size={10}>
+        <CustomAvatar
+          variant={"secondary"}
+          icon={<CopyOutlined />}
+          onClick={() => copyToClipboard(task)}
+        />
+         <Text>{task?.taskname}</Text>
+      </Space>
+     
+    </Row>
   </Row>
 );
 
 const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   const dispatch = useDispatch();
-  const handleDeleteClick = (id: string) => {
+  const handleDeleteClick = (id: any) => {
     dispatch(deleteToDo(id));
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleEditClick = (id: string) => {
+  const handleEditClick = (id: string | undefined) => {
     setIsModalOpen(true);
   };
   const copyToClipboard = (task: any) => {
@@ -90,14 +66,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   return (
     <>
       <Card
-        title={
-          <CustomTitle
-            task={task}
-            handleDeleteClick={handleDeleteClick}
-            handleEditClick={handleEditClick}
-            copyToClipboard={copyToClipboard}
-          />
-        }
+        title={<CustomTitle task={task} copyToClipboard={copyToClipboard} />}
         className="taskCard"
       >
         <Row>
@@ -128,6 +97,37 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
               </Tooltip>
             </Row>
           </Col>
+          <Divider />
+          <Row justify={"space-between"} style={{ width: "100%" }}>
+            <Col>
+              <Badge
+                color={
+                  task?.priority === "High"
+                    ? colors.high
+                    : task?.priority === "Medium"
+                    ? colors.medium
+                    : colors.low
+                }
+                count={task?.priority}
+                size={"small"}
+                style={{ height: 20, width: 55, padding: "2px 5px 0px 5px" }}
+              />
+            </Col>
+            <Col>
+              <Space size={10}>
+                <CustomAvatar
+                  variant={"primary"}
+                  icon={<EditOutlined />}
+                  onClick={() => handleEditClick(task?.id)}
+                />
+                <CustomAvatar
+                  variant={"secondary"}
+                  icon={<DeleteOutlined />}
+                  onClick={() => handleDeleteClick(task?.id)}
+                />
+              </Space>
+            </Col>
+          </Row>
         </Row>
       </Card>
 
