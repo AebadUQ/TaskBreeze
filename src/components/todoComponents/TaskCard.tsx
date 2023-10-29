@@ -5,7 +5,7 @@ import { TaskCardProps } from "../../types";
 import { useDispatch } from "react-redux";
 import { CustomAvatar } from "../ui-components";
 import { deleteToDo } from "../../redux/reducer/todoReducer";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, CopyOutlined } from "@ant-design/icons";
 import {
   Card,
   Row,
@@ -21,33 +21,46 @@ import {
 const { Paragraph, Text } = Typography;
 
 const CustomTitle: React.FC<{
-  id: string | any;
-  taskname: string;
-  priority: string;
+  task: any;
   handleDeleteClick: any;
   handleEditClick: any;
-}> = ({ id, taskname, priority, handleDeleteClick, handleEditClick }) => (
+  copyToClipboard: any;
+}> = ({ task, handleDeleteClick, handleEditClick, copyToClipboard }) => (
   <Row align={"middle"}>
     <Col span={12}>
       <Row align={"middle"} justify={"start"}>
         <Badge
           color={
-            priority === "High"
+            task?.priority === "High"
               ? colors.high
-              : priority === "Medium"
+              : task?.priority === "Medium"
               ? colors.medium
               : colors.low
           }
           size={"small"}
         />
-        <Text>{taskname}</Text>
+        <Text>{task?.taskname}</Text>
       </Row>
     </Col>
     <Col span={12}>
       <Row justify={"end"}>
         <Space size={10}>
-          <CustomAvatar variant={"secondary"} icon={<EditOutlined />} onClick={() => handleEditClick(id)} />
-          <CustomAvatar variant={"primary"} icon={<DeleteOutlined />} onClick={() => handleDeleteClick(id)} />
+          <CustomAvatar
+            variant={"secondary"}
+            icon={<CopyOutlined />}
+            onClick={() => copyToClipboard(task)}
+          />
+
+          <CustomAvatar
+            variant={"primary"}
+            icon={<EditOutlined />}
+            onClick={() => handleEditClick(task?.id)}
+          />
+          <CustomAvatar
+            variant={"secondary"}
+            icon={<DeleteOutlined />}
+            onClick={() => handleDeleteClick(task?.id)}
+          />
         </Space>
       </Row>
     </Col>
@@ -65,17 +78,24 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   const handleEditClick = (id: string) => {
     setIsModalOpen(true);
   };
+  const copyToClipboard = (task: any) => {
+    const textArea = document.createElement("textarea");
 
+    textArea.value = JSON.stringify(task);
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+  };
   return (
     <>
       <Card
         title={
           <CustomTitle
-            id={task?.id}
-            taskname={task?.taskname}
-            priority={task?.priority}
+            task={task}
             handleDeleteClick={handleDeleteClick}
             handleEditClick={handleEditClick}
+            copyToClipboard={copyToClipboard}
           />
         }
         className="taskCard"
@@ -110,11 +130,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           </Col>
         </Row>
       </Card>
-      
-      <EditModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} task={task}/>
+
+      <EditModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        task={task}
+      />
     </>
   );
 };
 
 export default TaskCard;
-
