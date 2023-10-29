@@ -5,15 +5,24 @@ import {
   BellFilled,
   LinkedinFilled,
   GithubFilled,
-  EllipsisOutlined
+  EllipsisOutlined,
 } from "@ant-design/icons";
-import { CustomAvatar } from "./ui-components";
 import { SocialMediaLink } from "../types";
+import { CustomAvatar } from "./ui-components";
 import TaskBreezLogo from "../assets/images/taskbreezlogo.jpg";
-import { Row, Col, Avatar, Image, Layout, Menu, Dropdown, Tag, Space  } from "antd";
+import {
+  Row,
+  Col,
+  Avatar,
+  Image,
+  Layout,
+  Menu,
+  Dropdown,
+  Tag,
+  Space,
+} from "antd";
 
 const { Header } = Layout;
-
 
 const HeaderComponent: React.FC = () => {
   const socialMediaLinks: SocialMediaLink[] = [
@@ -66,8 +75,14 @@ const HeaderComponent: React.FC = () => {
                       <a
                         key={index}
                         href={item.url}
-                        target={item.url.startsWith("mailto:") ? undefined : "_blank"}
-                        rel={item.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                        target={
+                          item.url.startsWith("mailto:") ? undefined : "_blank"
+                        }
+                        rel={
+                          item.url.startsWith("mailto:")
+                            ? undefined
+                            : "noopener noreferrer"
+                        }
                       >
                         <CustomAvatar variant={item.variant} icon={item.icon} />
                       </a>

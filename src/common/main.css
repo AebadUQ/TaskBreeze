@@ -188,7 +188,12 @@
     height: 12px;
     margin-right: 10px;
 }
-
+.todoCardDesc{
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
 /* layout content box css */
 .contentStyle{
     margin: 24px;
