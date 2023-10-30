@@ -19,6 +19,7 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
   };
 
   const avatarStyle: React.CSSProperties = {
+    cursor:'pointer',
     transition: "all 0.3s",
     color: colors.primary,
     backgroundColor: variant === "primary" ? colors?.lightgreen : colors.lightgrey,

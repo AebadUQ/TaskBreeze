@@ -57,7 +57,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   const copyToClipboard = (task: any) => {
     const textArea = document.createElement("textarea");
 
-    textArea.value = JSON.stringify(task);
+    textArea.value = task?.taskname;
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand("copy");
